@@ -1,0 +1,224 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#f6f5f0">
+  <meta name="description" content="Aprende verbos irregulares y regulares en inglés y practica los tiempos verbales con explicaciones y ejercicios interactivos gratuitos.">
+  <title>VerbQuest: verbos y tiempos verbales en inglés</title>
+  <!--SEO_METADATA-->
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="es_ES">
+  <meta property="og:title" content="VerbQuest: verbos y tiempos verbales en inglés">
+  <meta property="og:description" content="Aprende verbos irregulares y regulares en inglés y practica los tiempos verbales con explicaciones y ejercicios interactivos gratuitos.">
+  <link rel="stylesheet" href="./css/styles.css?v=2">
+</head>
+<body>
+  <header>
+    <div class="shell topbar">
+      <div>
+        <div class="brand"><span class="brand-icon" aria-hidden="true">V</span> VerbQuest</div>
+        <div class="tagline" id="tagline">Pequeños pasos, grandes avances.</div>
+      </div>
+      <div class="top-actions">
+       <button class="language-button" id="language-toggle" type="button" aria-label="Switch page language to English">English</button>
+       <div class="stats" aria-label="Tu progreso">
+        <div class="stat"><strong id="score">0</strong><span id="score-label">Puntos</span></div>
+        <div class="stat"><strong id="streak">0 🔥</strong><span id="streak-label">Racha</span></div>
+       </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="shell">
+    <section class="intro">
+      <div class="eyebrow" id="intro-eyebrow">Tu aventura empieza aquí</div>
+      <h1 id="intro-title">Domina los verbos<br>jugando.</h1>
+      <p id="intro-description">Aprende verbos irregulares y regulares, y practica los tiempos verbales con explicaciones claras y ejercicios interactivos.</p>
+    </section>
+
+    <div class="controls">
+      <div class="tabs" id="main-tabs" role="tablist" aria-label="Sección">
+        <button class="tab active" id="practice-tab" role="tab" aria-controls="practice-panel" aria-selected="true">🎮 Irregulares</button>
+        <button class="tab" id="list-tab" role="tab" aria-controls="list-panel" aria-selected="false">📖 Las 3 columnas</button>
+        <button class="tab" id="regular-tab" role="tab" aria-controls="regular-panel" aria-selected="false">✅ Regulares</button>
+        <button class="tab" id="tenses-tab" role="tab" aria-controls="tenses-panel" aria-selected="false">📝 Tiempos verbales</button>
+      </div>
+      <label class="part-control" id="part-control" for="part-select"><span id="part-label">Elige tu parte</span>
+        <select id="part-select" aria-label="Elige una parte"></select>
+      </label>
+    </div>
+
+    <section id="practice-panel" role="tabpanel" aria-labelledby="practice-tab" tabindex="0">
+      <div class="lesson-line">
+        <div>
+          <div class="lesson-name" id="lesson-name">Parte 1</div>
+          <div class="progress-track" id="progress-track" role="progressbar" aria-label="Aciertos en esta ronda" aria-valuemin="0" aria-valuemax="10" aria-valuenow="0">
+            <div class="progress-fill" id="progress-fill"></div>
+          </div>
+        </div>
+        <div class="lesson-count" id="lesson-count">0 aciertos en esta ronda</div>
+      </div>
+
+      <article class="game-card" aria-live="polite">
+        <div class="question-top">
+          <div class="question-label" id="question-label">Completa la forma que falta</div>
+          <div class="column-pill" id="column-pill">Pasado simple</div>
+        </div>
+        <div class="meaning" id="meaning">Significado: ir</div>
+        <h2 class="prompt" id="prompt">¿Cuál es el pasado de <em>go</em>?</h2>
+        <div class="word-row" id="word-row"></div>
+        <form class="answer-row" id="answer-form">
+          <input class="answer-input" id="answer-input" type="text" autocomplete="off" autocapitalize="none" spellcheck="false" placeholder="Escribe tu respuesta..." aria-label="Escribe la forma que falta" required>
+          <button class="primary" id="check-button" type="submit">Comprobar ↵</button>
+        </form>
+        <div class="feedback" id="feedback" aria-live="polite"></div>
+        <div class="bottom-row">
+          <span class="hint" id="practice-hint">Consejo: escribe solo la forma que falta. Pulsa Enter para comprobar.</span>
+          <button class="secondary hidden" id="next-button" type="button">Siguiente →</button>
+          <button class="secondary" id="skip-button" type="button">Pasar</button>
+        </div>
+      </article>
+    </section>
+
+    <section class="list-card hidden" id="list-panel" role="tabpanel" aria-labelledby="list-tab" tabindex="0">
+      <div class="list-heading">
+        <div>
+          <h2 id="list-title">Los verbos irregulares</h2>
+          <span class="lesson-count" id="verb-count"></span>
+        </div>
+        <div class="list-tools">
+          <label class="small-label" id="search-label" for="irregular-search">Buscar en toda la lista</label>
+          <input class="list-search" id="irregular-search" type="search" placeholder="Verbo o significado..." autocomplete="off">
+        </div>
+      </div>
+      <div class="table-scroll">
+        <table>
+          <thead><tr><th data-i18n="infinitive">Infinitivo</th><th data-i18n="pastSimple">Pasado simple</th><th data-i18n="pastParticiple">Participio pasado</th><th data-i18n="meaning">Significado</th></tr></thead>
+          <tbody id="verb-list"></tbody>
+        </table>
+      </div>
+      <nav class="pagination" id="irregular-pagination" aria-label="Paginación de verbos irregulares">
+        <button id="irregular-previous" type="button"></button>
+        <span id="irregular-page" aria-live="polite"></span>
+        <button id="irregular-next" type="button"></button>
+      </nav>
+    </section>
+
+    <section class="list-card hidden" id="regular-panel" role="tabpanel" aria-labelledby="regular-tab" tabindex="0">
+      <div class="study-content">
+        <h2 id="regular-heading">Verbos regulares</h2>
+        <p id="regular-description">En los verbos regulares, el pasado simple y el participio se forman normalmente añadiendo <strong>-ed</strong>. Practica por rondas o consulta la lista.</p>
+        <article class="game-card regular-practice">
+          <div class="question-top">
+            <div class="question-label" id="regular-challenge">Reto de verbos regulares</div>
+            <div class="column-pill" id="regular-column">Inglés + español</div>
+          </div>
+          <h3 class="prompt" id="regular-prompt">Escribe la forma en pasado y su traducción al español.</h3>
+          <form class="answer-row" id="regular-form">
+            <div class="regular-answer-fields">
+              <label class="small-label" id="regular-english-label" for="regular-answer">Pasado simple / participio
+                <input class="answer-input" id="regular-answer" type="text" autocomplete="off" autocapitalize="none" spellcheck="false" placeholder="Forma en inglés..." required>
+              </label>
+              <label class="small-label" id="regular-spanish-label" for="regular-translation">Traducción al español
+                <input class="answer-input" id="regular-translation" type="text" autocomplete="off" autocapitalize="none" spellcheck="false" placeholder="Significado en español..." required>
+              </label>
+            </div>
+            <button class="primary" id="regular-check" type="submit">Comprobar</button>
+          </form>
+          <div class="feedback" id="regular-feedback" aria-live="polite"></div>
+          <div class="regular-options">
+            <button class="secondary" id="regular-next" type="button">Siguiente verbo →</button>
+          </div>
+        </article>
+        <div class="list-heading"><h2 id="regular-list-heading">Lista de verbos regulares</h2><span class="lesson-count" id="regular-count"></span></div>
+        <div class="table-scroll">
+          <table>
+            <thead><tr><th data-i18n="infinitive">Infinitivo</th><th data-i18n="pastSimple">Pasado simple</th><th data-i18n="pastParticiple">Participio pasado</th><th data-i18n="meaning">Significado</th></tr></thead>
+            <tbody id="regular-list"></tbody>
+          </table>
+        </div>
+        <nav class="pagination" id="regular-list-pagination" aria-label="Paginación de verbos regulares">
+          <button id="regular-list-previous" type="button"></button>
+          <span id="regular-list-page" aria-live="polite"></span>
+          <button id="regular-list-next" type="button"></button>
+        </nav>
+      </div>
+    </section>
+
+    <section class="list-card hidden" id="tenses-panel" role="tabpanel" aria-labelledby="tenses-tab" tabindex="0">
+      <div class="study-content">
+        <h2 id="tenses-heading">Aprende y practica los tiempos verbales</h2>
+        <p id="tenses-description">Elige un tiempo para ver cuándo se usa, cómo se forma y un ejemplo. Luego traduce una frase o escribe una propia.</p>
+        <div class="practice-tools">
+          <label for="tense-select"><span id="tense-select-label">Tiempo verbal</span>
+            <select id="tense-select"></select>
+          </label>
+          <label for="tense-mode"><span id="tense-mode-label">Tipo de práctica</span>
+            <select id="tense-mode">
+              <option value="translate" id="mode-translate">Traducir una frase</option>
+              <option value="write" id="mode-write" disabled>Escribir mi propia frase (temporalmente desactivado)</option>
+              <option value="free" id="mode-free" disabled>Escribir una frase libre (temporalmente desactivado)</option>
+            </select>
+          </label>
+        </div>
+        <div class="tense-layout">
+          <article class="explanation">
+            <div class="eyebrow" id="tense-category">Presente</div>
+            <h3 id="tense-name">Present simple</h3>
+            <p id="tense-use"></p>
+            <p class="formula" id="tense-formula"></p>
+            <p class="example" id="tense-example"></p>
+          </article>
+          <article>
+            <div class="practice-prompt" id="tense-prompt"></div>
+            <form id="tense-form">
+              <label for="tense-answer" class="small-label" id="tense-answer-label">Tu traducción en inglés</label>
+              <textarea class="free-write" id="tense-answer" required spellcheck="true" lang="en" placeholder="Escribe aquí tu frase en inglés..."></textarea>
+              <div class="regular-options regular-options-compact">
+                <button class="primary" id="tense-submit" type="submit">Corregir mi frase</button>
+                <button class="secondary" id="new-tense-prompt" type="button">Otra frase</button>
+              </div>
+            </form>
+            <div class="feedback-box hidden" id="tense-feedback" aria-live="polite"></div>
+            <p class="hint" id="tense-hint">Por ahora, las opciones para escribir frases propias están desactivadas. Puedes seguir practicando con el modo de traducción.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+    <article class="seo-guide" aria-labelledby="guide-heading">
+      <div class="eyebrow" data-i18n="guideEyebrow">Guía de inglés</div>
+      <h2 id="guide-heading" data-i18n="guideHeading">Cómo aprender los verbos en inglés</h2>
+      <p data-i18n="guideIntro">Aprender los verbos te ayuda a construir frases y hablar de acciones en distintos momentos. En inglés conviene practicar las formas del verbo junto con ejemplos y repetirlas en pequeñas sesiones.</p>
+      <h3 data-i18n="guideFormsHeading">Verbos regulares e irregulares</h3>
+      <p data-i18n="guideFormsText">Los verbos regulares suelen formar el pasado simple y el participio pasado añadiendo -ed: work, worked, worked. Los irregulares cambian de forma y es útil aprender sus tres columnas: infinitivo, pasado simple y participio.</p>
+      <div class="guide-example" id="guide-example" aria-label="Ejemplo de verbo irregular: go, went, gone">
+        <span data-i18n="guideBase">Infinitivo</span><strong>go</strong>
+        <span data-i18n="guidePast">Pasado simple</span><strong>went</strong>
+        <span data-i18n="guideParticiple">Participio pasado</span><strong>gone</strong>
+        <span data-i18n="guideMeaning">Significado</span><strong data-i18n="guideGoMeaning">ir</strong>
+      </div>
+      <h3 data-i18n="guideTensesHeading">Cuándo usar los tiempos verbales</h3>
+      <p data-i18n="guideTensesText">El present simple sirve para rutinas y hechos generales: I study every day. El past simple expresa acciones terminadas: I studied yesterday. El present perfect conecta una experiencia pasada con el presente: I have studied English.</p>
+      <p data-i18n="guideSummary">Practica identificando el momento de la acción, consulta la estructura del tiempo verbal y escribe tus propios ejemplos. VerbQuest incluye ejercicios para repasar verbos regulares, irregulares y tiempos verbales.</p>
+    </article>
+  </main>
+  <footer class="shell">
+    <p id="footer">© 2026 Dani Téllez. Todos los derechos reservados. Tu puntuación y racha se guardan en este dispositivo. Las traducciones se comprueban localmente; si solicitas una corrección, la frase se envía a DeepL. No incluyas información sensible.</p>
+    <a class="footer-link" id="privacy-link" href="./privacy.html">Privacidad y uso de datos</a>
+  </footer>
+  <script src="./js/app.js?v=4" defer></script>
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "VerbQuest",
+      "description": "Aplicación educativa para aprender verbos regulares e irregulares en inglés y practicar tiempos verbales.",
+      "applicationCategory": "EducationalApplication",
+      "operatingSystem": "Any",
+      "inLanguage": "es",
+      "isAccessibleForFree": true
+    }
+  </script>
+</body>
+</html>

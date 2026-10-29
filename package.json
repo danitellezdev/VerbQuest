@@ -1,0 +1,14 @@
+{
+  "name": "verbquest",
+  "version": "1.0.0",
+  "description": "An interactive English verb and grammar learning app.",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=20.6"
+  },
+  "scripts": {
+    "start": "node --env-file=.env server.mjs",
+    "check": "node --check server.mjs && node --check public/js/app.js"
+  }
+}
