@@ -70,8 +70,7 @@ To publish this project as `https://<your-github-username>.github.io/VerbQuest/`
 The site uses relative asset and privacy-page links so it works from the
 repository's `/VerbQuest/` path. Translation exercises run in the browser;
 sentence correction through DeepL is unavailable on GitHub Pages because it
-requires the Node.js server. Disconnect or disable the Netlify site only after
-the Pages deployment is working.
+requires the Node.js server.
 
 For a custom domain or server deployment, configure the actual public origin
 for the Node.js server in `.env`, with no path:
