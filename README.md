@@ -3,6 +3,9 @@
 VerbQuest is an interactive English-learning app for practicing irregular verbs,
 regular verbs, and verb tenses.
 
+VerbQuest es una aplicación educativa gamificada para practicar verbos en inglés
+mediante ejercicios interactivos, con puntuación y rachas.
+
 ## Project structure
 
 ```text
